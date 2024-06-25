@@ -9,15 +9,23 @@ class Ball {
         this.radius = radius;
     }
     
-    public void move() {
+    public boolean move() {
         pos.x += v.x;
         pos.y += v.y;
         if (pos.x < radius || pos.x > width - radius) {
             v.x *= -1;
         }
-        if (pos.y < radius || pos.y > height - radius) {
+        if (pos.y < radius) {
             v.y *= -1;
         }
+        if (pos.y > height - radius) {
+            pos.x = width / 2;
+            pos.y = height / 2;
+            v.x = random(-5, 5);
+            v.y = random(-5, 5);
+            return true;
+        }
+        return false;
     }
     
     public void display() {

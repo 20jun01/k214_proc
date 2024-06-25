@@ -1,6 +1,8 @@
 Bar bar;
 Ball ball;
 ThemeColor theme;
+int missCounter = 0;
+
 void setup(){
     size(800, 600);
     bar = new Bar();
@@ -18,7 +20,12 @@ void draw() {
 
 void moveCall() {
     bar.move(keyPressed, keyCode, width);
-    ball.move();
+    boolean isMissed = ball.move();
+    missCounter += isMissed ? 1 : 0;
+    if (missCounter > 5) {
+        println("Game Over!!");
+        exit();
+    }
 }
 
 void collisionCall() {
