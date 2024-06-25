@@ -33,14 +33,14 @@ class Ball {
     }
 
     public void handleCollision(Bar bar) {
-        if (!isColidedWith(bar)) {
+        if (!isCollidedWith(bar)) {
             return;
         }
         v.y *= -1;
     }
 
     // TODO: generarize for Square?
-    public boolean isColidedWith(Bar bar) {
+    public boolean isCollidedWith(Bar bar) {
         return bar.isInArea(pos);
     }
 }

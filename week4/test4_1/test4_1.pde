@@ -11,11 +11,21 @@ void setup(){
 void draw() {
     background(theme.main);
 
+    moveCall();
+    collisionCall();
+    drawCall();
+}
+
+void moveCall() {
     bar.move(keyPressed, keyCode, width);
     ball.move();
+}
 
+void collisionCall() {
     ball.handleCollision(bar);
+}
 
+void drawCall() {
     fill(theme.accent);
     bar.display();
     ball.display();
