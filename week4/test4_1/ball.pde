@@ -41,13 +41,6 @@ class Ball {
 
     // TODO: generarize for Square?
     public boolean isColidedWith(Bar bar) {
-        Pos barPos = bar.getPos();
-        if (!(barPos.x < pos.x && pos.x < barPos.x + bar.barWidth)) {
-            return false;
-        }
-        if (!(barPos.y < pos.y && pos.y < barPos.y + bar.barHeight)) {
-            return false;
-        }
-        return true;
+        return bar.isInArea(pos);
     }
 }

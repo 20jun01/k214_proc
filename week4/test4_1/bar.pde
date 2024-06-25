@@ -34,4 +34,12 @@ class Bar {
     public Velocity getVelocity() {
         return v;
     }
+
+    public boolean isInArea(float x, float y) {
+        return x >= pos.x && x <= pos.x + barWidth && y >= pos.y && y <= pos.y + barHeight;
+    }
+
+    public boolean isInArea(Pos p) {
+        return p.x >= pos.x && p.x <= pos.x + barWidth && p.y >= pos.y && p.y <= pos.y + barHeight;
+    }
 }
