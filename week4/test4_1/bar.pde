@@ -19,26 +19,29 @@ class Bar {
     public void move(boolean keyPressed, int keyCode, int screenWidth) {
         if (!keyPressed)return;
         if (keyCode == RIGHT) {
-            pos.x = Math.min(pos.x + v.x, screenWidth - barWidth);
+            v.x = abs(v.x);
         } 
         else if (keyCode == LEFT) {
-            pos.x = Math.max(pos.x - v.x, 0);
+            v.x = -abs(v.x);
+        } else {
+            v.x = 0;
         }
+        pos.x = Math.min(Math.max(pos.x + v.x, 0), screenWidth - barWidth);
     }
-
+    
     // TODO: shuould be impl for interface or abstract class
     public Pos getPos() {
         return pos;
     }
-
+    
     public Velocity getVelocity() {
         return v;
     }
-
+    
     public boolean isInArea(float x, float y) {
         return x >= pos.x && x <= pos.x + barWidth && y >= pos.y && y <= pos.y + barHeight;
     }
-
+    
     public boolean isInArea(Pos p) {
         return p.x >= pos.x && p.x <= pos.x + barWidth && p.y >= pos.y && p.y <= pos.y + barHeight;
     }
