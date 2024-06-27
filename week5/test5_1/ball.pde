@@ -75,6 +75,10 @@ class Ball {
     
     // TODO: generarize for Square?
     public boolean isCollidedWith(Square sq) {
-        return sq.isInArea(pos);
+        boolean isCollided = false;
+        for (int i = 0; i < 4; i++) {
+            isCollided |= sq.isInArea(pos.x + radius * cos(PI / 4 * i), pos.y + radius * sin(PI / 4 * i));
+        }
+        return isCollided;
     }
 }

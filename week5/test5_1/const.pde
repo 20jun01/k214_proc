@@ -10,8 +10,8 @@ class Const {
     static final float HORIZONTAL_BLOCK_MARGIN = 0.0f;
     static final float VERTICAL_BLOCK_MARGIN = 1.0f;
     
-    static final float BLOCK_WIDTH = 50.0f;
-    static final float BLOCK_HEIGHT = 25.0f;
+    static final float BLOCK_WIDTH = 80.0f;
+    static final float BLOCK_HEIGHT = 40.0f;
     
     static final float BLOCK_START_X = 10.0f;
     static final float BLOCK_START_Y = 10.0f;
