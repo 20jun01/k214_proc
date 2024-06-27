@@ -62,7 +62,9 @@ class Ball {
             return false;
         }
 
-        if (pos.x < block.pos.x || pos.x > block.pos.x + block.blockWidth) {
+        Pos p = block.getPos();
+
+        if (pos.x < p.x || pos.x > p.x + block.Width) {
             v.x *= -1;
         } else {
             v.y *= -1;
@@ -72,11 +74,7 @@ class Ball {
     }
     
     // TODO: generarize for Square?
-    public boolean isCollidedWith(Bar bar) {
-        return bar.isInArea(pos);
-    }
-
-    public boolean isCollidedWith(Block block) {
-        return block.isInArea(pos);
+    public boolean isCollidedWith(Square sq) {
+        return sq.isInArea(pos);
     }
 }
