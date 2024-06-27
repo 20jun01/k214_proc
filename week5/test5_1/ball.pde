@@ -2,13 +2,13 @@ class Ball {
     Pos pos;
     Velocity v;
     float radius;
-    
+
     public Ball(float x, float y, float vx, float vy, float radius) {
         this.pos = new Pos(x, y);
         this.v = new Velocity(vx, vy);
         this.radius = radius;
     }
-    
+
     public boolean move() {
         pos.x += v.x;
         pos.y += v.y;
@@ -27,30 +27,30 @@ class Ball {
         }
         return false;
     }
-    
+
     public void display() {
         ellipse(pos.x, pos.y, radius * 2, radius * 2);
     }
-    
+
     public Pos getPos() {
         return pos;
     }
-    
+
     public Velocity getVelocity() {
         return v;
     }
-    
+
     public void handleCollision(Bar bar) {
         if (!isCollidedWith(bar)) {
             return;
         }
-        
+
         if (bar.getVelocity().x > 0.0f) {
             v.x = abs(v.x);
         } else if (bar.getVelocity().x < 0.0f) {
             v.x = -abs(v.x);
         }
-        
+
         v.y *= -1;
     }
 
@@ -72,8 +72,7 @@ class Ball {
 
         return true;
     }
-    
-    // TODO: generarize for Square?
+
     public boolean isCollidedWith(Square sq) {
         boolean isCollided = false;
         for (int i = 0; i < 4; i++) {

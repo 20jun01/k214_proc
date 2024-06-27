@@ -1,6 +1,6 @@
 class Bar extends Square {
     Velocity v;
-    
+
     // constructor
     public Bar() {
         pos = new Pos(width / 2, height - 50.0f);
@@ -8,11 +8,11 @@ class Bar extends Square {
         Width = 200.0f;
         Height = 50.0f;
     }
-    
+
     public void display() {
         rect(pos.x, pos.y, Width, Height);
     }
-    
+
     public void move(boolean keyPressed, int keyCode, int screenWidth) {
         if (!keyPressed)return;
         if (keyCode == RIGHT) {

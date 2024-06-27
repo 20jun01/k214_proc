@@ -9,8 +9,8 @@ void setup() {
     bar = new Bar();
     ball = new Ball(Const.BALL_START_X, Const.BALL_START_Y, Const.BALL_START_VX, Const.BALL_START_VY, Const.BALL_RADIUS);
     theme = new ThemeColor();
-    blocks = new Block[Const.MAX_BLOCKS];
-    
+    blocks = new Block[Const.BLOCK_NUM];
+
     for (int i = 0; i < Const.HORIZONTAL_BLOCK_NUM; i++) {
         for (int j = 0; j < Const.VERTICAL_BLOCK_NUM; j++) {
             blocks[i * Const.VERTICAL_BLOCK_NUM + j] = new Block(Const.BLOCK_START_X + i * Const.BLOCK_WIDTH, Const.BLOCK_START_Y + j * Const.BLOCK_HEIGHT, Const.BLOCK_WIDTH, Const.BLOCK_HEIGHT, theme.getRandomColor());
