@@ -1,13 +1,13 @@
 public class TitleManager extends SceneManager {
     public TitleManager() {
     }
-    public Scene update(KeyState keyState){
-        if (keyState.get(ENTER)) {
+    public Scene update(KeyState keyState) {
+        if (keyState.get(int(ENTER))) {
             return Scene.GAME;
         }
         return Scene.TITLE;
     }
-    public void display(){
+    public void display() {
         background(0);
         fill(255);
         textSize(50);

@@ -26,4 +26,7 @@ class Const {
     static final float BALL_START_VY = 5.0f;
 
     static final float BALL_RADIUS = 10.0f;
+
+    // game
+    static final int MISS_THRESHOLD = 3;
 }

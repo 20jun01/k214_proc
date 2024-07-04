@@ -1,6 +1,12 @@
 public static class KeyState {
     private static final HashMap<Integer, Boolean> states = new HashMap<Integer, Boolean>();
     
+    private static KeyState instance = new KeyState();
+    
+    public static KeyState getInstance() {
+        return instance;
+    }
+    
     private KeyState() {}
     
     static void initialize() {
@@ -8,6 +14,7 @@ public static class KeyState {
         states.put(RIGHT, false);
         states.put(UP,    false);
         states.put(DOWN,  false);
+        states.put(int(ENTER), false);
     }
     
     public static boolean get(int code) {

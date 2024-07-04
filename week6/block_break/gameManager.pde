@@ -2,7 +2,7 @@ enum Scene {
     TITLE, GAME, GAMEOVER
 }
 
-class GameManager {
+public class GameManager {
     Scene currentScene = Scene.TITLE;
     SceneManager titleManager;
     SceneManager gameManager;
@@ -29,18 +29,21 @@ class GameManager {
                 nextScene = gameOverManager.update(keyState);
                 break;
         }
+        if (nextScene != currentScene) {
+            currentScene = nextScene;
+        }
     }
     
     public void display() {
         switch(currentScene) {
             case TITLE:
-                titleManager.displayTitle();
+                titleManager.display();
                 break;
             case GAME:
-                gameManager.displayGame();
+                gameManager.display();
                 break;
             case GAMEOVER:
-                gameOverManager.displayGameOver();
+                gameOverManager.display();
                 break;
         }
     }

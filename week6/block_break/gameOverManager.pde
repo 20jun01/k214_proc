@@ -1,14 +1,13 @@
 public class GameOverManager extends SceneManager {
     public GameOverManager() {
     }
-    public Scene update(KeyState keyState){
-        if (keyState.get(ENTER)) {
+    public Scene update(KeyState keyState) {
+        if (keyState.get(int(ENTER))) {
             return Scene.TITLE;
         }
         return Scene.GAMEOVER;
     }
-    public void display(){
-        background(0);
+    public void display() {
         fill(255);
         textSize(20);
         text("Game Over", width / 2 - 40, height / 2);
