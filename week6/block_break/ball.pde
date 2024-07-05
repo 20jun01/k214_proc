@@ -45,14 +45,19 @@ class Ball {
             return;
         }
         
-        if (bar.getVelocity().x > 0.0f) {
-            v.x = abs(v.x);
-        } else if (bar.getVelocity().x < 0.0f) {
-            v.x = -abs(v.x);
+        float dx = 0;
+        if (KeyState.get(RIGHT)) {
+            dx += abs(v.x);
+        }
+        if (KeyState.get(LEFT)) {
+            dx -= abs(v.x);
+        }
+        if (dx != 0) {
+            v.x = dx;
         }
         
         Pos p = bar.getPos();
-        if (p.y < pos.y  && pos.y < p.y + bar.Height) {
+        if (p.y < pos.y - v.y  && pos.y < p.y + bar.Height - v.y) {
             if (pos.x < p.x + bar.Width / 2) {
                 v.x = -abs(v.x);
             } else {
