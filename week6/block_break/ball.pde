@@ -55,8 +55,8 @@ class Ball {
             respawn_num += 1;
             pos.x = width / 2;
             pos.y = height / 2;
-            v.x = 5 - respawn_num;
-            v.y = 5 - respawn_num * 2;
+            v.x = 5 - respawn_num * 2;
+            v.y = 5 - respawn_num;
             return true;
         }
         return false;
