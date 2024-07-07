@@ -2,6 +2,7 @@ public class GameSceneManager extends SceneManager {
     Bar bar;
     Ball ball;
     Block[] blocks;
+    Condition conditions;
     ThemeColor theme;
     int missCounter;
     
@@ -17,11 +18,14 @@ public class GameSceneManager extends SceneManager {
             }
         }
         missCounter = 0;
+        conditions = new Condition();
+        checkConditions(blocks);
     }
     
     public Scene update(KeyState keyState) {
-        missCounter = moveCall(missCounter);
-        collisionCall();
+        missCounter = moveCall(missCounter, conditions);
+        checkConditions(blocks);
+        collisionCall(conditions);
         if (missCounter >= Const.MISS_THRESHOLD) {
             missCounter = 0;
             return Scene.GAMEOVER;
@@ -30,15 +34,39 @@ public class GameSceneManager extends SceneManager {
     }
 
     // return miss count's sum
-    private int moveCall(int missCounter) {
+    private int moveCall(int missCounter, Condition conditions) {
         int count = missCounter;
-        bar.move(width);
-        boolean isMissed = ball.move();
+        boolean isMissed = false;
+        if (conditions.isBarYou()) {
+            bar.moveYou(width);
+        }
+        
+        if (conditions.isBallYou()) {
+            isMissed = ball.moveYou();
+        } else {
+            isMissed = ball.move();
+        }
         count += isMissed ? 1 : 0;
+        if (conditions.isTextFall()) {
+            moveText();
+        }
         return count;
     }
+
+    private void moveText() {
+        for (int j = 0; j < Const.VERTICAL_BLOCK_NUM - 1; j++) {
+            for (int i = 0; i < Const.HORIZONTAL_BLOCK_NUM; i++) {
+                // pass text to under block
+                blocks[i * Const.VERTICAL_BLOCK_NUM + j].moveText(blocks[i * Const.VERTICAL_BLOCK_NUM + j + 1]);
+            }
+        }
+
+        for (int i = 0; i < Const.HORIZONTAL_BLOCK_NUM; i++) {
+            blocks[i * Const.VERTICAL_BLOCK_NUM + Const.VERTICAL_BLOCK_NUM - 1].moveText(bar);
+        }
+    }
     
-    private void collisionCall() {
+    private void collisionCall(Condition conditions) {
         ball.handleCollision(bar);
         for (Block block : blocks) {
             if (block != null) {
@@ -46,7 +74,24 @@ public class GameSceneManager extends SceneManager {
             }
         }
     }
-    
+
+    private void checkConditions(Block[] blocks) {
+        conditions.resetCondition();
+        for (int j = 0; j < Const.VERTICAL_BLOCK_NUM; j++) {
+            checkRowConditions(blocks, j);
+        }
+    }
+
+    private void checkRowConditions(Block[] blocks, int rowIndex) {
+        for (int i = 0; i < Const.HORIZONTAL_BLOCK_NUM - 1; i++) {
+            conditions.checkCondition(blocks[i * Const.VERTICAL_BLOCK_NUM + rowIndex].getCode(), blocks[(i + 1) * Const.VERTICAL_BLOCK_NUM + rowIndex].getCode());
+        }
+
+        for (int i = 0; i < Const.HORIZONTAL_BLOCK_NUM - 2; i++) {
+            conditions.checkCondition(blocks[i * Const.VERTICAL_BLOCK_NUM + rowIndex].getCode(), blocks[(i + 1) * Const.VERTICAL_BLOCK_NUM + rowIndex].getCode(),  blocks[(i + 2) * Const.VERTICAL_BLOCK_NUM + rowIndex].getCode());
+        }
+    }
+
     public void display() {
         fill(theme.accent);
         bar.display();

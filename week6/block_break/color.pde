@@ -1,3 +1,8 @@
+public enum Color {
+    BLACK,
+    RANDOM;
+}
+
 public class ThemeColor {
     int main = color(33, 33, 33);
     int sub = color(50, 50, 50);

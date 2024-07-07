@@ -13,7 +13,7 @@ class Bar extends Square {
         rect(pos.x, pos.y, Width, Height);
     }
     
-    public void move(int screenWidth) {
+    public void moveYou(int screenWidth) {
         float dx = 0;
         if (KeyState.get(LEFT)) {
             dx -= abs(v.x);

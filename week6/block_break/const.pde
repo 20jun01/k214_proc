@@ -1,10 +1,32 @@
-// 5 * 10
+// 6 * 8
 final Code[][] Codes = {
-    {Code.NONE, Code.NONE, Code.NONE, Code.BALL, Code.IS, Code.CONTROLLABLE, Code.NONE, Code.NONE, Code.NONE, Code.NONE} ,
-    {Code.NONE, Code.NONE, Code.NONE, Code.BAR, Code.IS, Code.CONTROLLABLE, Code.NONE, Code.NONE, Code.NONE, Code.NONE} ,
-    {Code.NONE, Code.NONE, Code.NONE, Code.BLOCK, Code.IS, Code.NUMBER, Code.NONE, Code.NONE, Code.NONE, Code.NONE} ,
-    {Code.NONE, Code.NONE, Code.NONE, Code.BALL, Code.IS, Code.NUMBER, Code.NONE, Code.NONE, Code.NONE, Code.NONE} ,
-    {Code.NONE, Code.NONE, Code.NONE, Code.GAME, Code.IS, Code.PLAYING, Code.NONE, Code.NONE, Code.NONE, Code.NONE}
+    {Code.BAR, Code.IS, Code.YOU, Code.NONE, Code.TEXT, Code.IS, Code.FALL, Code.NONE} ,
+    {Code.COLOR, Code.IS, Code.HARD, Code.NONE, Code.NONE, Code.NONE, Code.NONE, Code.NONE} ,
+    {Code.NONE, Code.NONE, Code.NONE, Code.NONE, Code.GAME, Code.NONE, Code.NONE, Code.NONE} ,
+    {Code.EMPTY, Code.EMPTY, Code.NONE, Code.NONE, Code.NONE, Code.CLEAR, Code.NONE, Code.NONE} ,
+    {Code.EMPTY, Code.EMPTY, Code.NONE, Code.NONE, Code.NONE, Code.NONE, Code.NONE, Code.NONE},
+    {Code.EMPTY, Code.EMPTY, Code.EMPTY, Code.EMPTY,Code.EMPTY, Code.EMPTY,Code.EMPTY, Code.EMPTY}
+};
+
+final Color[][] Colors = {
+    {
+        Color.RANDOM, Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,
+    },
+    {
+        Color.RANDOM, Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,
+    },
+    {
+        Color.BLACK, Color.BLACK,Color.BLACK,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,
+    },
+    {
+        Color.RANDOM, Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,
+    },
+    {
+        Color.RANDOM, Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,
+    },
+    {
+        Color.RANDOM, Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,
+    }
 };
 
 class Const {
@@ -15,8 +37,8 @@ class Const {
     // block
     static final int BLOCK_NUM = 50;
     
-    static final int VERTICAL_BLOCK_NUM = 5;
-    static final int HORIZONTAL_BLOCK_NUM = 10;
+    static final int VERTICAL_BLOCK_NUM = 6;
+    static final int HORIZONTAL_BLOCK_NUM = 8;
     
     static final float HORIZONTAL_BLOCK_MARGIN = 0.0f;
     static final float VERTICAL_BLOCK_MARGIN = 1.0f;
@@ -24,7 +46,7 @@ class Const {
     static final float BLOCK_WIDTH = 80.0f;
     static final float BLOCK_HEIGHT = 40.0f;
     
-    static final float BLOCK_START_X = 5.0f;
+    static final float BLOCK_START_X = 160.0f;
     static final float BLOCK_START_Y = 10.0f;
     
     // ball
@@ -38,4 +60,5 @@ class Const {
     
     // game
     static final int MISS_THRESHOLD = 3;
+    static final int FALL_THRESHOLD = 50;
 }

@@ -8,6 +8,38 @@ class Ball {
         this.v = new Velocity(vx, vy);
         this.radius = radius;
     }
+
+    public boolean moveYou() {
+        // TODO: boolean to int & multiply
+        if (KeyState.get(LEFT)) {
+            pos.x -= abs(v.x);
+        }
+        if (KeyState.get(RIGHT)) {
+            pos.x += abs(v.x);
+        }
+        if (KeyState.get(UP)) {
+            pos.y -= abs(v.y);
+        }
+        if (KeyState.get(DOWN)) {
+            pos.y += abs(v.y);
+        }
+
+        if (isDeathCondition()) {
+            pos.x = width / 2;
+            pos.y = height / 2;
+            v.x = random(3, 5);
+            v.y = random(3, 5);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isDeathCondition() {
+        return pos.y > height - radius ||
+                pos.x > width - radius ||
+                pos.y < 0 + radius ||
+                pos.x < 0 + radius;
+    }
     
     public boolean move() {
         pos.x += v.x;
