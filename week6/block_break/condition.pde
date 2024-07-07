@@ -38,4 +38,12 @@ public class Condition {
     public boolean isTextFall() {
         return isTextFall;
     }
+
+    public boolean isBlackHard() {
+        return isBlackHard;
+    }
+
+    public boolean isGameClear() {
+        return isGameClear;
+    }
 }

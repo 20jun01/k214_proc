@@ -2,6 +2,7 @@ class Block extends Square {
     color c;
     boolean hitFlag;
     Code code;
+    Color colorCode;
     int fallCounter = 0;
     
     // constructor
@@ -15,7 +16,7 @@ class Block extends Square {
         float maxMinSum = maxRGB + minRGB;
     }
     
-    public Block(float x, float y, float w, float h, color c, Code code) {
+    public Block(float x, float y, float w, float h, color c, Code code, Color colorCode) {
         pos = new Pos(x, y);
         Width = w;
         Height = h;
@@ -24,6 +25,7 @@ class Block extends Square {
         float minRGB = min(red(c), green(c), blue(c));
         float maxMinSum = maxRGB + minRGB;
         this.code = code;
+        this.colorCode = colorCode;
         if (code == Code.EMPTY) {
             hitFlag = true;
         }
@@ -33,7 +35,11 @@ class Block extends Square {
         if (hitFlag || code != Code.NONE) {
             return;
         }
-        fill(c);
+        if (colorCode != Color.RANDOM) {
+            fill(color(colorCode.getColor()));
+        } else{
+            fill(c);
+        }
         rect(pos.x, pos.y, Width, Height);
         fill(originColor);
     }
@@ -73,8 +79,11 @@ class Block extends Square {
         return hitFlag;
     }
     
-    public void setHit(boolean hitFlag) {
-        this.hitFlag = hitFlag;
+    public void setHit(boolean hitFlag, boolean isBlackHard) {
+        if (isBlackHard && colorCode == Color.BLACK) {
+            return;
+        }
+        this.hitFlag |= hitFlag;
         if (hitFlag) {
             this.code = Code.EMPTY;
         }
@@ -83,21 +92,25 @@ class Block extends Square {
     public Code getCode() {
         return code;
     }
-
+    
     public boolean isExist() {
         if (code == Code.EMPTY) {
             return false;
         }
         return true;
     }
-
+    
     public Code passText() {
         Code tmp = code;
         code = Code.EMPTY;
         return tmp;
     }
-
+    
     public void receiveText(Code code) {
         this.code = code;
+        if (code == Code.EMPTY || code == Code.NONE) {
+            return;
+        }
+        this.hitFlag = false;
     }
 }

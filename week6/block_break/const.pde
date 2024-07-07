@@ -1,7 +1,7 @@
 // 6 * 8
 final Code[][] Codes = {
-    {Code.BAR, Code.IS, Code.YOU, Code.NONE, Code.TEXT, Code.IS, Code.FALL, Code.NONE} ,
-    {Code.COLOR, Code.IS, Code.HARD, Code.NONE, Code.NONE, Code.NONE, Code.NONE, Code.NONE} ,
+    {Code.NONE, Code.BAR, Code.IS, Code.YOU, Code.NONE, Code.TEXT, Code.IS, Code.FALL } ,
+    {Code.NONE, Code.COLOR, Code.IS, Code.HARD, Code.NONE, Code.NONE, Code.NONE, Code.NONE} ,
     {Code.NONE, Code.NONE, Code.NONE, Code.NONE, Code.GAME, Code.NONE, Code.NONE, Code.NONE} ,
     {Code.EMPTY, Code.EMPTY, Code.NONE, Code.NONE, Code.NONE, Code.CLEAR, Code.NONE, Code.NONE} ,
     {Code.EMPTY, Code.EMPTY, Code.NONE, Code.NONE, Code.NONE, Code.NONE, Code.NONE, Code.NONE},
@@ -10,13 +10,13 @@ final Code[][] Codes = {
 
 final Color[][] Colors = {
     {
-        Color.RANDOM, Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,
+        Color.BLACK, Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,
     },
     {
-        Color.RANDOM, Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,
+        Color.BLACK, Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,
     },
     {
-        Color.BLACK, Color.BLACK,Color.BLACK,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,
+        Color.RANDOM, Color.BLACK,Color.BLACK,Color.BLACK,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,
     },
     {
         Color.RANDOM, Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,Color.RANDOM,
@@ -46,7 +46,7 @@ class Const {
     static final float BLOCK_WIDTH = 80.0f;
     static final float BLOCK_HEIGHT = 40.0f;
     
-    static final float BLOCK_START_X = 160.0f;
+    static final float BLOCK_START_X = 80.0f;
     static final float BLOCK_START_Y = 10.0f;
     
     // ball

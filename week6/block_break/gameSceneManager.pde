@@ -14,7 +14,7 @@ public class GameSceneManager extends SceneManager {
         for (int j = 0; j < Const.VERTICAL_BLOCK_NUM; j++) {
             color rowColor = theme.getRandomColor();
             for (int i = 0; i < Const.HORIZONTAL_BLOCK_NUM; i++) {
-                blocks[i * Const.VERTICAL_BLOCK_NUM + j] = new Block(Const.BLOCK_START_X + i * Const.BLOCK_WIDTH, Const.BLOCK_START_Y + j * Const.BLOCK_HEIGHT, Const.BLOCK_WIDTH, Const.BLOCK_HEIGHT, rowColor, Codes[j][i]);
+                blocks[i * Const.VERTICAL_BLOCK_NUM + j] = new Block(Const.BLOCK_START_X + i * Const.BLOCK_WIDTH, Const.BLOCK_START_Y + j * Const.BLOCK_HEIGHT, Const.BLOCK_WIDTH, Const.BLOCK_HEIGHT, rowColor, Codes[j][i], Colors[j][i]);
             }
         }
         missCounter = 0;
@@ -29,6 +29,9 @@ public class GameSceneManager extends SceneManager {
         if (missCounter >= Const.MISS_THRESHOLD) {
             missCounter = 0;
             return Scene.GAMEOVER;
+        }
+        if (conditions.isGameClear()) {
+            return Scene.GAMECLEAR;
         }
         return Scene.GAME;
     }
@@ -70,7 +73,7 @@ public class GameSceneManager extends SceneManager {
         ball.handleCollision(bar);
         for (Block block : blocks) {
             if (block != null) {
-                block.setHit(ball.handleCollision(block));
+                block.setHit(ball.handleCollision(block), conditions.isBlackHard());
             }
         }
     }

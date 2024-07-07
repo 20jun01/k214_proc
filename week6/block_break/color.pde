@@ -1,6 +1,13 @@
 public enum Color {
     BLACK,
     RANDOM;
+    
+    public int getColor() {
+        if (this == BLACK) {
+            return 0;
+        }
+        return 0;
+    }
 }
 
 public class ThemeColor {

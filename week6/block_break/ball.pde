@@ -2,6 +2,7 @@ class Ball {
     Pos pos;
     Velocity v;
     float radius;
+    int respawn_num = 0;
     
     public Ball(float x, float y, float vx, float vy, float radius) {
         this.pos = new Pos(x, y);
@@ -51,10 +52,11 @@ class Ball {
             v.y *= -1;
         }
         if (pos.y > height - radius) {
+            respawn_num += 1;
             pos.x = width / 2;
             pos.y = height / 2;
-            v.x = random(3, 5);
-            v.y = random(3, 5);
+            v.x = 5 - respawn_num;
+            v.y = 5 - respawn_num * 2;
             return true;
         }
         return false;
@@ -102,7 +104,7 @@ class Ball {
     
     public boolean handleCollision(Block block) {
         if (block.isHit()) {
-            return true;
+            return false;
         }
         if (!isCollidedWith(block)) {
             return false;
