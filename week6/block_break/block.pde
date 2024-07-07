@@ -29,7 +29,7 @@ class Block extends Square {
     }
     
     public void display(color originColor) {
-        if (hitFlag) {
+        if (hitFlag || code != Code.NONE) {
             return;
         }
         fill(c);

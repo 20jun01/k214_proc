@@ -1,5 +1,5 @@
 enum Scene {
-    TITLE, GAME, GAMEOVER, CLEAR,
+    TITLE, GAME, GAMEOVER, GAMECLEAR,
 }
 
 public class GameManager {
@@ -7,12 +7,14 @@ public class GameManager {
     SceneManager titleManager;
     SceneManager gameManager;
     SceneManager gameOverManager;
+    SceneManager gameClearManager;
     KeyState keyState;
     
-    public GameManager(SceneManager titleManager, SceneManager gameManager, SceneManager gameOverManager, KeyState keyState) {
+    public GameManager(SceneManager titleManager, SceneManager gameManager, SceneManager gameOverManager, SceneManager gameClearManager, KeyState keyState) {
         this.titleManager = titleManager;
         this.gameManager = gameManager;
         this.gameOverManager = gameOverManager;
+        this.gameClearManager = gameClearManager;
         this.keyState = keyState;
     }
     
@@ -47,7 +49,7 @@ public class GameManager {
             case GAMEOVER:
                 gameOverManager.display();
                 break;
-            case CLEAR:
+            case GAMECLEAR:
                 gameClearManager.display();
         }
     }
