@@ -1,5 +1,5 @@
 enum Scene {
-    TITLE, GAME, GAMEOVER
+    TITLE, GAME, GAMEOVER, CLEAR,
 }
 
 public class GameManager {
@@ -28,6 +28,8 @@ public class GameManager {
             case GAMEOVER:
                 nextScene = gameOverManager.update(keyState);
                 break;
+            case GAMECLEAR:
+                nextScene = gameClearManager.update(keyState);
         }
         if (nextScene != currentScene) {
             currentScene = nextScene;
@@ -45,6 +47,8 @@ public class GameManager {
             case GAMEOVER:
                 gameOverManager.display();
                 break;
+            case CLEAR:
+                gameClearManager.display();
         }
     }
 }
