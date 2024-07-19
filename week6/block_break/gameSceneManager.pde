@@ -12,7 +12,7 @@ public class GameSceneManager extends SceneManager {
         theme = new ThemeColor();
         blocks = new Block[Const.BLOCK_NUM];
         for (int j = 0; j < Const.VERTICAL_BLOCK_NUM; j++) {
-            color rowColor = theme.getRandomColor();
+            color rowColor = theme.getRowColor(j);
             for (int i = 0; i < Const.HORIZONTAL_BLOCK_NUM; i++) {
                 blocks[i * Const.VERTICAL_BLOCK_NUM + j] = new Block(Const.BLOCK_START_X + i * Const.BLOCK_WIDTH, Const.BLOCK_START_Y + j * Const.BLOCK_HEIGHT, Const.BLOCK_WIDTH, Const.BLOCK_HEIGHT, rowColor, Codes[j][i], Colors[j][i]);
             }
