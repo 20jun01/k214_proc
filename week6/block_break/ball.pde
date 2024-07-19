@@ -3,7 +3,7 @@ class Ball {
     Velocity v;
     float radius;
     int respawn_num = 0;
-    
+
     public Ball(float x, float y, float vx, float vy, float radius) {
         this.pos = new Pos(x, y);
         this.v = new Velocity(vx, vy);
