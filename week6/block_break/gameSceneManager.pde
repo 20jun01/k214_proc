@@ -12,9 +12,10 @@ public class GameSceneManager extends SceneManager {
         theme = new ThemeColor();
         blocks = new Block[Const.BLOCK_NUM];
         for (int j = 0; j < Const.VERTICAL_BLOCK_NUM; j++) {
-            color rowColor = theme.getRowColor(j);
+            color rowColor = theme.getColor(j);
+            color inactiveRowColor = theme.getDownColor(j);
             for (int i = 0; i < Const.HORIZONTAL_BLOCK_NUM; i++) {
-                blocks[i * Const.VERTICAL_BLOCK_NUM + j] = new Block(Const.BLOCK_START_X + i * Const.BLOCK_WIDTH, Const.BLOCK_START_Y + j * Const.BLOCK_HEIGHT, Const.BLOCK_WIDTH, Const.BLOCK_HEIGHT, rowColor, Codes[j][i], Colors[j][i]);
+                blocks[i * Const.VERTICAL_BLOCK_NUM + j] = new Block(Const.BLOCK_START_X + i * Const.BLOCK_WIDTH, Const.BLOCK_START_Y + j * Const.BLOCK_HEIGHT, Const.BLOCK_WIDTH, Const.BLOCK_HEIGHT, rowColor, inactiveRowColor, Codes[j][i], Colors[j][i]);
             }
         }
         missCounter = 0;
@@ -87,11 +88,11 @@ public class GameSceneManager extends SceneManager {
 
     private void checkRowConditions(Block[] blocks, int rowIndex) {
         for (int i = 0; i < Const.HORIZONTAL_BLOCK_NUM - 1; i++) {
-            conditions.checkCondition(blocks[i * Const.VERTICAL_BLOCK_NUM + rowIndex].getCode(), blocks[(i + 1) * Const.VERTICAL_BLOCK_NUM + rowIndex].getCode());
+            conditions.checkCondition(blocks[i * Const.VERTICAL_BLOCK_NUM + rowIndex].getCode(), blocks[(i + 1) * Const.VERTICAL_BLOCK_NUM + rowIndex].getCode(), rowIndex, i);
         }
 
         for (int i = 0; i < Const.HORIZONTAL_BLOCK_NUM - 2; i++) {
-            conditions.checkCondition(blocks[i * Const.VERTICAL_BLOCK_NUM + rowIndex].getCode(), blocks[(i + 1) * Const.VERTICAL_BLOCK_NUM + rowIndex].getCode(),  blocks[(i + 2) * Const.VERTICAL_BLOCK_NUM + rowIndex].getCode());
+            conditions.checkCondition(blocks[i * Const.VERTICAL_BLOCK_NUM + rowIndex].getCode(), blocks[(i + 1) * Const.VERTICAL_BLOCK_NUM + rowIndex].getCode(),  blocks[(i + 2) * Const.VERTICAL_BLOCK_NUM + rowIndex].getCode(), rowIndex, i);
         }
     }
 
@@ -104,9 +105,9 @@ public class GameSceneManager extends SceneManager {
                 block.display(theme.accent);
             }
         }
-        for (Block block : blocks) {
-            if (block != null) {
-                block.displayCode(theme.accent);
+        for (int j = 0; j < Const.VERTICAL_BLOCK_NUM; j++) {
+            for (int i = 0; i < Const.HORIZONTAL_BLOCK_NUM; i++) {
+                blocks[i * Const.VERTICAL_BLOCK_NUM + j].displayCode(theme.accent, conditions.isActive(j, i));
             }
         }
     }

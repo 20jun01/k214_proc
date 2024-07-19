@@ -1,5 +1,6 @@
 class Block extends Square {
     color c;
+    color inactiveColor;
     boolean hitFlag;
     Code code;
     Color colorCode;
@@ -16,11 +17,12 @@ class Block extends Square {
         float maxMinSum = maxRGB + minRGB;
     }
     
-    public Block(float x, float y, float w, float h, color c, Code code, Color colorCode) {
+    public Block(float x, float y, float w, float h, color c, color inactiveColor, Code code, Color colorCode) {
         pos = new Pos(x, y);
         Width = w;
         Height = h;
         this.c = c;
+        this.inactiveColor = inactiveColor;
         float maxRGB = max(red(c), green(c), blue(c));
         float minRGB = min(red(c), green(c), blue(c));
         float maxMinSum = maxRGB + minRGB;
@@ -44,11 +46,15 @@ class Block extends Square {
         fill(originColor);
     }
     
-    public void displayCode(color originColor) {
+    public void displayCode(color originColor, boolean isActive) {
         if (hitFlag || code == Code.NONE || code == Code.EMPTY) {
             return;
         }
-        fill(c);
+        if (isActive) {
+            fill(c);
+        } else{
+            fill(inactiveColor);
+        }
         text(code.toString(), pos.x + Width / 2 - 20, pos.y + Height / 2);
         fill(originColor);
     }
